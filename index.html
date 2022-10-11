@@ -8,9 +8,9 @@
       let loc = sp.get('location');
       if (!loc) loc = prompt('Enter a MD file\'s URL:')
       const md = window.markdownit({
-        html: true,
+        html: sp.get('allow-html')==='true',
         linkify: true,
-        xhtmlOut: true
+        xhtmlOut: sp.get('allow-html')===true,
       });
       (async()=>{
         try {
@@ -27,6 +27,10 @@
         background-color: #1a1a1a;
         color: #ffffff;
         font-family: Whitney, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+      p {
+        margin-block-start: 2px;
+        margin-block-end: 2px;
       }
       img {
         border-radius: 5px;
