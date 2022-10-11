@@ -19,6 +19,7 @@
         } catch(e){
           console.error(e)
           alert('Exception Occurred:\n'+e+'\n\nIf you haven\'t already, please visit https://cors-anywhere.herokuapp.com/corsdemo & click the button to use this.')
+          document.body.innerHTML=`<a href="https://cors-anywhere.herokuapp.com/corsdemo" target="_blank">Enable Cors Bypass</a>`
         }
       })()
     </script>
@@ -42,5 +43,7 @@
       }
     </style>
   </head>
-  <body></body>
+  <body>
+    <h2>Loading</h2>
+  </body>
 </html>
