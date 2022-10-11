@@ -3,12 +3,15 @@
   <head>
     <script src="https://cdn.jsdelivr.net/npm/markdown-it@13.0.1/dist/markdown-it.min.js"></script>
     <script defer>
-      let loc = new URLSearchParams(window.location.search).get('location');
+      const sp = new URLSearchParams(window.location.search)
+      let loc = sp.get('location');
       if (!loc) loc = prompt('Enter a MD file\'s URL:')
       const md = window.markdownit();
       (async(dt)=>{
         const result = md.render(await (await dt).text());
         console.log(result)
-      })(fetch(loc,{mode:'no-cors'}))
+      })(fetch(loc,{
+        ...(sp.get('nocors')==='true'?{mode:'no-cors'}:{})
+      }))
     </script>
   </head>
