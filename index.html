@@ -3,6 +3,7 @@
   <head>
     <script src="https://cdn.jsdelivr.net/npm/markdown-it@13.0.1/dist/markdown-it.min.js"></script>
     <script defer>
+      const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
       const sp = new URLSearchParams(window.location.search)
       let loc = sp.get('location');
       if (!loc) loc = prompt('Enter a MD file\'s URL:')
@@ -35,7 +36,7 @@
           if (!corsres2.includes('You currently')) alert('Please visit https://cors-anywhere.herokuapp.com/corsdemo to use this.')
         }
         // actual code
-        const result = md.render(await (await fetch(loc)).text());
+        const result = md.render(await (await fetch('https://cors-anywhere.herokuapp.com/'+loc, {'headers':{'x-requested-with': genRanHex(32)}})).text());
         console.log(result)
       })()
     </script>
