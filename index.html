@@ -10,7 +10,7 @@
       const md = window.markdownit();
       (async()=>{
         // cors
-        const corsres1 = await (await fetch('https://cors-anywhere.herokuapp.com/corsdemo')).text()
+        const corsres1 = await (await (fetch('https://cors-anywhere.herokuapp.com/corsdemo', {"mode": "no-cors"}).catch(v=>v))).text()
         if (!corsres1.includes('You currently have temporary access to the demo server.')) {
           const acrq = corsres1.split('type="hidden" name="accessRequest" value="').pop().split('"').shift()
           const corsres2 = await (await fetch("https://cors-anywhere.herokuapp.com/corsdemo?accessRequest="+acrq, {
@@ -30,7 +30,7 @@
             "referrerPolicy": "strict-origin-when-cross-origin",
             "body": null,
             "method": "GET",
-            "mode": "cors",
+            "mode": "no-cors",
             "credentials": "omit"
           })).text()
           if (!corsres2.includes('You currently')) alert('Please visit https://cors-anywhere.herokuapp.com/corsdemo to use this.')
