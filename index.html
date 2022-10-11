@@ -9,6 +9,6 @@
       (async(dt)=>{
         const result = md.render(await (await dt).text());
         console.log(result)
-      })(fetch(loc))
+      })(fetch(loc,{mode:'no-cors'}))
     </script>
   </head>
