@@ -15,7 +15,8 @@
       (async()=>{
         try {
         const result = md.render(await (await fetch('https://cors-anywhere.herokuapp.com/'+loc, {'headers':{'x-requested-with': genRanHex(32)}})).text());
-        document.body.innerHTML = result;
+        if (result.toLowerCase().startsWith('/corsdemo'))  throw new Error('Please enable CORS Service\nPress the button on the cors service site')
+          document.body.innerHTML = result;
         } catch(e){
           console.error(e)
           alert('Exception Occurred:\n'+e+'\n\nIf you haven\'t already, please visit https://cors-anywhere.herokuapp.com/corsdemo & click the button to use this.')
